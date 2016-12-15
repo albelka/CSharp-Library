@@ -121,7 +121,7 @@ namespace Library
 
       Assert.Equal(testAuthor, result);
     }
-
+    
     public void Dispose()
     {
       Author.DeleteAll();

@@ -1,0 +1,17 @@
+@{
+  Layout = "Shared/_Layout.cshtml";
+}
+
+<h2>Add a new book</h2><br>
+
+  <form action="/books/new" method="post">
+    <label for="title">Enter the title:</label>
+    <input type="text" name="title">
+    <label for="author">Enter the author:</label>
+    <input type="text" name="author">
+    <label for="number-of">Enter number of copies:</label>
+    <input type="text" name="numberOf">
+
+    <button type="submit">Add</button>
+  </form>
+<h5><a href="/">Home</a></h5><br>}

@@ -1,0 +1,18 @@
+@{
+  Layout = "Shared/_Layout.cshtml";
+}
+      <h2>Books</h2><br>
+
+      @if(@Model.Count == 0)
+      {
+        <h3>No books have been added yet!</h3>
+      }
+      <ul>
+        @foreach(var book in Model)
+        {
+          <li><h3><a href='/books/@book.GetId()'>@book.GetTitle()</a> <h4>By: @book.GetAuthor()</h4> | <a href="/book/edit/@book.GetId()">Edit</a> | <a href="/book/delete/@book.GetId()">Delete<a/></h3></li>
+        }
+      </ul><br>
+
+      <h5><a href="/books/new">Add new book</a></h5>
+      <h5><a href="/">Return home</a></h5><br>
