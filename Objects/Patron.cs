@@ -148,6 +148,18 @@ namespace Library
       }
     }
 
+    public List<Book> GetCheckouts(List<Copy> copies)
+    {
+      List<Book> checkouts = new List<Book>{};
+
+      foreach(Copy Copy in copies)
+      {
+        Book newBook = Book.Find(Copy.GetBookId());
+        checkouts.Add(newBook);
+      }
+      return checkouts;
+    }
+
     public List<Copy> GetCopies()
     {
       SqlConnection conn = DB.Connection();

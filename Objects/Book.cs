@@ -67,6 +67,8 @@ namespace Library
       }
     }
 
+
+
     public static List<Book> GetAll()
     {
       List<Book> allBooks = new List<Book>{};
@@ -178,6 +180,38 @@ namespace Library
       }
       return authors;
     }
+
+    public int GetCopies()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+      SqlCommand cmd = new SqlCommand("SELECT * FROM copies WHERE book_id = @BookId;",conn);
+
+      SqlParameter BookIdParameter = new SqlParameter("@BookId", this.GetId());
+      cmd.Parameters.Add(BookIdParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int numberOf = 0;
+      List<Copy> copies = new List<Copy>{};
+      while(rdr.Read())
+      {
+        int copyId = rdr.GetInt32(0);
+        int bookId = rdr.GetInt32(1);
+        numberOf = rdr.GetInt32(2);
+        DateTime dueDate = rdr.GetDateTime(3);
+        Copy newCopy = new Copy(bookId, numberOf, dueDate, copyId);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return numberOf;
+    }
+
 
     public void Update(string BookTitle)
     {

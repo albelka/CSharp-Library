@@ -1,0 +1,18 @@
+@{
+  Layout = "Shared/_Layout.cshtml";
+}
+
+
+      @if(@Model.Count == 0)
+      {
+        <h3>No books were found by that author</h3>
+      }
+      <h2>Books by that author:</h2><br>
+      <ul>
+        @foreach(var book in @Model)
+        {
+          <li><h3>book.GetTitle()</h3></li>
+        }
+      </ul><br>
+
+      <h5><a href="/">Return home</a></h5><br>

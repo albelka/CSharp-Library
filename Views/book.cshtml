@@ -1,0 +1,7 @@
+@{
+  Layout = "Shared/_Layout.cshtml";
+}
+<h3>@Model["book"].GetTitle()</h3><br>
+
+<h4>By: @Model["author"][0].GetName()</h4><br>
+<h4>Copies available: @Model["copies"]</h4><br>

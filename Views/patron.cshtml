@@ -1,0 +1,15 @@
+@{
+  Layout = "Shared/_Layout.cshtml";
+}
+<form method="post" action="/patron/checkout/@Model[0].GetId()">
+      <select class="form-control" name="book" placeholder="Choose a book">
+        <option disabled selected>Book</option>
+        @foreach(var book in @Model[1])
+        {
+          <option value="@book.GetId()">@book.GetTitle()</option>
+        }
+      </select>
+
+      <button type="submit" class="btn btn-info">checkout</button>
+
+  </form>

@@ -14,7 +14,7 @@ namespace Library
     }
 
     [Fact]
-    public void ReplacesEqualObjects_True()
+    public void Replace_ReplacesEqualObjects()
     {
 
       Book bookOne = new Book("Bobby Goes Home");
@@ -24,7 +24,7 @@ namespace Library
     }
 
     [Fact]
-    public void GetAll_true()
+    public void GetAll_GetsAllBooksFromDatabase()
     {
       //Arrange
       Book bookOne = new Book("Bobby Goes Home");
@@ -39,7 +39,7 @@ namespace Library
     }
 
     [Fact]
-    public void Save_SavesToDatabase_true()
+    public void Save_SavesToDatabase()
     {
       //Arrange
       Book testBook = new Book("Bobby Goes Home");
@@ -53,7 +53,7 @@ namespace Library
     }
 
     [Fact]
-    public void AddAuthor_AddsAuthorToBook_True()
+    public void AddAuthor_AddsAuthorToBook()
     {
       Book newBook = new Book("Mr Wiggles");
       newBook.Save();
@@ -64,6 +64,34 @@ namespace Library
       List<Author> result = newBook.GetAuthors();
 
       Assert.Equal(expected, result);
+    }
+
+    [Fact]
+    public void GetAuthors_GetsAuthorFromDatabase()
+    {
+      Book newBook = new Book("Mr Wiggles");
+      newBook.Save();
+      Author newAuthor = new Author("Ryan");
+      newAuthor.Save();
+      newBook.AddAuthor(newAuthor);
+
+      List<Author> expected = new List<Author>{newAuthor};
+      List<Author> result = newBook.GetAuthors();
+
+      Assert.Equal(expected, result);
+    }
+
+    [Fact]
+    public void GetCopies_GetsCopiesFromDatabase()
+    {
+      Book newBook = new Book("Mr Wiggles");
+      newBook.Save();
+      Copy newCopy = new  Copy(newBook.GetId(),5, DateTime.Today);
+      newCopy.Save();
+
+      int result =newBook.GetCopies();
+
+      Assert.Equal(5, result);
     }
 
     [Fact]
@@ -145,6 +173,7 @@ namespace Library
 
       Assert.Equal(expectedBooks, booksByAuthor);
     }
+
 
     public void Dispose()
     {

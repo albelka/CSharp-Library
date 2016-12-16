@@ -1,0 +1,16 @@
+@{
+  Layout = "Shared/_Layout.cshtml";
+}
+
+<h2>Search for a book:</h2><br>
+
+  <form action="/books/found" method="post">
+    <label for="name">Enter the author:</label>
+    <input type="text" name="author">
+
+    <button type="submit">Search</button>
+  </form>
+
+
+
+<h5><a href="/">Home</a></h5><br>

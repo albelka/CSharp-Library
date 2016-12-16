@@ -1,0 +1,12 @@
+@{
+  Layout = "Shared/_Layout.cshtml";
+}
+<h2>Edit patron: @Model.GetName()</h2>
+<form action="/patron/edit/@Model.GetId()" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+  <input name="patron-id" type="hidden" value="@Model.GetId()">
+  <label for="name">Name</label>
+  <input id="name" name="name" type="text">
+  <button type="submit">Submit</button>
+</form>
+<h4><a href="/">Return home</a></h4>
